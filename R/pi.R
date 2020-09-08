@@ -23,6 +23,17 @@ inside_unit_circle = function(x){
   (d < 1)
 }
 
+#' @title Estimation of Pi
+#' @description Provide an estimation of the value of pi using simple probabilities
+#' @param B the number of points on which the estimation of pi is produced.
+#' @param seed the seed to be used for the random generation used in the procedure
+#' @return A \code{list} of the `pi` class made of the estimated value of pi and the points on which this estimation is based. In particular:
+#' \describe{
+#'     \item{estimated_pi}{The estimated value of pi}
+#'     \item{points}{A data frame with the points in the unit square on which the estimation is based and a dummy indicating whether the particular point is inside the unit circle or not.}
+#' }
+#' @examples
+#' estimate_pi(B=5000, seed=10)
 estimate_pi = function(B = 5000, seed = 10){
   # Control of the arguments
   if(B%%1 != 0 | B <= 0){
@@ -63,6 +74,12 @@ estimate_pi = function(B = 5000, seed = 10){
   return(rval)
 }
 
+#' @title Plotting of the points serving in the estimation of pi
+#'
+#' @description Plotting procedure for an object of the `pi` class.
+#' @param x an object of `pi` class containing the points that serve to the estimation of the pi value.
+#' @return A plot of the unit square and the unit circle emphasising the points used in the estimation.
+#' @examples plot(x)
 plot.pi <- function(x){
   #Control of the argument
   if(class(x) != "pi"){
