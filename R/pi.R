@@ -60,7 +60,7 @@ estimate_pi = function(B = 5000, seed = 10){
   points$inside = ifelse(apply(cbind(points$x, points$y), 1, inside_unit_circle)==TRUE, 1, 0)
 
   # Compute the number of points inside unit circle
-  estimated_pi = 4*(sum(apply(points, 1, inside_unit_circle))/B)
+  estimated_pi = 4*(sum(points$inside)/B)
 
   # create a new list
   rval <- list(
@@ -99,7 +99,7 @@ plot.pi <- function(x){
   cols = hcl(h = seq(15, 375, length = 3), l = 65, c = 100, alpha = 0.2)[1:2]
   grid()
   for (i in 1:B){
-    points(points[i,1], points[i,2], pch = 16, col = cols[1 + nb_inside[i]])
+    points(points[i,1], points[i,2], pch = 16, col = cols[1 + points[i, 3]])
   }
   make_circle()
 }
