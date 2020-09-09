@@ -3,6 +3,7 @@ Type: Package
 Title: Estimate Pi
 Version: 0.1.0
 Author: Fabien Baeriswyl
+Maintainer: Fabien Baeriswyl <fabienbaeriswyl@gmail.com>
 Description: Functions to numerically estimate pi.
 License: GPL (>= 2)
 Encoding: UTF-8

@@ -32,6 +32,8 @@ inside_unit_circle = function(x){
 #'     \item{estimated_pi}{The estimated value of pi}
 #'     \item{points}{A data frame with the points in the unit square on which the estimation is based and a dummy indicating whether the particular point is inside the unit circle or not.}
 #' }
+#' @importFrom stats runif
+#' @export
 #' @examples
 #' estimate_pi(B=5000, seed=10)
 estimate_pi = function(B = 5000, seed = 10){
@@ -79,6 +81,10 @@ estimate_pi = function(B = 5000, seed = 10){
 #' @description Plotting procedure for an object of the `pi` class.
 #' @param x an object of `pi` class containing the points that serve to the estimation of the pi value.
 #' @return A plot of the unit square and the unit circle emphasising the points used in the estimation.
+#' @importFrom stats runif
+#' @importFrom graphics grid line polygon
+#' @importFrom grDevices hcl
+#' @export
 #' @examples plot(x)
 plot.pi <- function(x){
   #Control of the argument
