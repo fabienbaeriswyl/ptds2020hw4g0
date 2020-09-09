@@ -60,8 +60,7 @@ estimate_pi = function(B = 5000, seed = 10){
   points$inside = ifelse(apply(cbind(points$x, points$y), 1, inside_unit_circle)==TRUE, 1, 0)
 
   # Compute the number of points inside unit circle
-  nb_inside = apply(points, 1, inside_unit_circle)
-  estimated_pi = 4*(sum(nb_inside)/B)
+  estimated_pi = 4*(sum(apply(points, 1, inside_unit_circle))/B)
 
   # create a new list
   rval <- list(
