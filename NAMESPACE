@@ -2,8 +2,10 @@
 
 S3method(plot,pi)
 export(estimate_pi)
+importFrom(Rcpp,sourceCpp)
 importFrom(grDevices,hcl)
 importFrom(graphics,grid)
 importFrom(graphics,lines)
 importFrom(graphics,polygon)
 importFrom(stats,runif)
+useDynLib(ptds2020hw4g0)
