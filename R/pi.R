@@ -82,7 +82,7 @@ estimate_pi = function(B = 5000, seed = 10){
 #' @param x an object of `pi` class containing the points that serve to the estimation of the pi value.
 #' @return A plot of the unit square and the unit circle emphasising the points used in the estimation.
 #' @importFrom stats runif
-#' @importFrom graphics grid line polygon
+#' @importFrom graphics grid lines polygon
 #' @importFrom grDevices hcl
 #' @export
 #' @examples plot(x)
