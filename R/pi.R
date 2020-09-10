@@ -57,7 +57,9 @@ estimate_pi = function(B = 5000, seed = 10){
     inside = rep(NA, B)
   )
 
-  points$inside = ifelse(apply(cbind(points$x, points$y), 1, inside_unit_circle)==TRUE, 1, 0)
+  for(i in 1:B){
+    points$inside[i] <- ifelse(inside_unit_circle(cbind(points$x[i], points$y[i]))==TRUE, 1, 0)
+  }
 
   # Compute the number of points inside unit circle
   estimated_pi = 4*(sum(points$inside)/B)
@@ -103,3 +105,44 @@ plot.pi <- function(x){
   }
   make_circle()
 }
+
+
+estimate_pi2 = function(B = 5000, seed = 10){
+  # Control of the arguments
+  if(B%%1 != 0 | B <= 0){
+    stop("Argument B is invalid. Please specify a positive integer for this parameter.")
+  }
+
+  if(seed%%1 != 0 | seed <= 0){
+    stop("seed argument is invalid. Please specify a positive integer for this parameter.")
+  }
+
+
+  # Control seed
+  set.seed(seed)
+
+  # Simulate B points
+  points <- data.frame(
+    x = runif(n = B, min = -1, max = 1),
+    y = runif(n = B, min = -1, max = 1),
+    inside = rep(NA, B)
+  )
+
+  points$inside <- ifelse(is_inside(as.matrix(cbind(points$x,points$y)))==true, 1, 0)
+
+  # Compute the number of points inside unit circle
+  estimated_pi = 4*(sum(points$inside)/B)
+
+  # create a new list
+  rval <- list(
+    estimated_pi = estimated_pi,
+    points = points
+  )
+
+  # assign pi class to rval
+  class(rval) <- "pi"
+
+  # return rval
+  return(rval)
+}
+
