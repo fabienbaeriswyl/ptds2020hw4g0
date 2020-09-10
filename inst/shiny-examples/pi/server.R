@@ -1,26 +1,29 @@
-#
-# This is the server logic of a Shiny web application. You can run the
-# application by clicking 'Run App' above.
-#
-# Find out more about building applications with Shiny here:
-#
-#    http://shiny.rstudio.com/
-#
-
 library(shiny)
+library(ptds2020hw4g0) # REPLACE N BY YOUR GROUP NUMBER AND DELETE THIS COMMENT
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output) {
 
-    output$distPlot <- renderPlot({
+    simulate <- reactive(input$method, {
+        # simulate pi and measure the time here
+        start.time <- Sys.time()
+        pi <- estimate_pi2(B = input$B, seed=input$seed)$estimated_pi
+        end.time <- Sys.time()
+        time <- end.time-start.time
+    })
 
-        # generate bins based on input$bins from ui.R
-        x    <- faithful[, 2]
-        bins <- seq(min(x), max(x), length.out = input$bins + 1)
+    output$plot <- renderPlot({
+        # plot pi
+        plot(simulate())
+    })
 
-        # draw the histogram with the specified number of bins
-        hist(x, breaks = bins, col = 'darkgray', border = 'white')
+    output$time <- renderText({
+        # extract the time of the execution
+        paste("Execution time is:", time)
+    })
 
+    output$pi <- renderText({
+        # extract the estimated value
+        paste("Estimated pi is:", pi)
     })
 
 })
