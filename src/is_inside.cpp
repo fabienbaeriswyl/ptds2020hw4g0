@@ -10,12 +10,12 @@ LogicalVector is_inside(NumericMatrix points){
   for(int i(1); i<=points.nrow();i++){
 
     double rad;
-    rad = pow(points(i, 1), 2)+pow(points(i, 2),2);
+    rad = pow(points(i-1, 0),2)+pow(points(i-1, 1),2);
 
     if (rad < 1){
-      inside(i)=true;
+      inside(i-1)=true;
     }else{
-      inside(i)=false;
+      inside(i-1)=false;
     }
   }
 

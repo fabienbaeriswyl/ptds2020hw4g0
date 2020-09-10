@@ -106,7 +106,19 @@ plot.pi <- function(x){
   make_circle()
 }
 
-
+#' @title Estimation of Pi
+#' @description Provide an estimation of the value of pi using simple probabilities. The internal procedure uses C++ code.
+#' @param B the number of points on which the estimation of pi is produced.
+#' @param seed the seed to be used for the random generation used in the procedure
+#' @return A \code{list} of the `pi` class made of the estimated value of pi and the points on which this estimation is based. In particular:
+#' \describe{
+#'     \item{estimated_pi}{The estimated value of pi}
+#'     \item{points}{A data frame with the points in the unit square on which the estimation is based and a dummy indicating whether the particular point is inside the unit circle or not.}
+#' }
+#' @importFrom stats runif
+#' @export
+#' @examples
+#' estimate_pi(B=5000, seed=10)
 estimate_pi2 = function(B = 5000, seed = 10){
   # Control of the arguments
   if(B%%1 != 0 | B <= 0){
@@ -128,7 +140,7 @@ estimate_pi2 = function(B = 5000, seed = 10){
     inside = rep(NA, B)
   )
 
-  points$inside <- ifelse(is_inside(as.matrix(cbind(points$x,points$y)))==true, 1, 0)
+  points$inside <- ifelse(is_inside(as.matrix(cbind(points$x,points$y)))==TRUE, 1, 0)
 
   # Compute the number of points inside unit circle
   estimated_pi = 4*(sum(points$inside)/B)
