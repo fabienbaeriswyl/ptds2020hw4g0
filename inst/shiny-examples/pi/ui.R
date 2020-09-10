@@ -8,7 +8,7 @@ shinyUI(fluidPage(
 
         sidebarPanel(
 
-            selectInput("method", ...),
+            selectInput("method", "Parameters:", choices=c("seed", "B")),
 
             numericInput("seed", "Enter the desired seed:", min=1, max=10^6, value=1),
 

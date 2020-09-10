@@ -6,7 +6,7 @@ shinyServer(function(input, output) {
     simulate <- reactive(input$method, {
         # simulate pi and measure the time here
         start.time <- Sys.time()
-        pi <- estimate_pi2(B = input$B, seed=input$seed)$estimated_pi
+        pival <- estimate_pi2(B = input$B, seed=input$seed)$estimated_pi
         end.time <- Sys.time()
         time <- end.time-start.time
     })
@@ -23,7 +23,7 @@ shinyServer(function(input, output) {
 
     output$pi <- renderText({
         # extract the estimated value
-        paste("Estimated pi is:", pi)
+        paste("Estimated pi is:", pival)
     })
 
 })
