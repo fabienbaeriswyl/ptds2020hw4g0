@@ -7,8 +7,7 @@ shinyUI(fluidPage(
     sidebarLayout(
 
         sidebarPanel(
-
-            selectInput("method", "Parameters:", choices=c("seed", "B")),
+            selectInput("method", "Choose the desired method to estimate pi:", choices=c("estimated_pi", "estimated_pi2")),
 
             numericInput("seed", "Enter the desired seed:", min=1, max=10^6, value=1),
 
